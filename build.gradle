@@ -3,7 +3,7 @@ apply plugin: 'maven'
 apply plugin: 'signing'
 
 group = "io.koara"
-jar.baseName = 'koara-html5'
+jar.baseName = 'koara-html'
 
 repositories {
 	mavenLocal()
@@ -47,15 +47,15 @@ uploadArchives {
 			}
 
 			pom.project {
-				name 'koara-html5'
+				name 'koara-html'
 				packaging 'jar'
-				description 'Koara to HTML5 parser written in Java'
+				description 'Koara to Html parser written in Java'
 				url 'http://www.koara.io'
 
 				scm {
-					url 'https://github.com/koara/koara-java-html5.git'
-					connection 'https://github.com/koara/koara-java-html5.git'
-					developerConnection 'https://github.com/koara/koara-java-html5.git'
+					url 'https://github.com/koara/koara-java-html.git'
+					connection 'https://github.com/koara/koara-java-html.git'
+					developerConnection 'https://github.com/koara/koara-java-html.git'
 				}
 				licenses {
 					license {
