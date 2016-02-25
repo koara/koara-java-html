@@ -30,7 +30,7 @@ import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
 import io.koara.ast.Document;
-import io.koara.html5.Html5Renderer;
+import io.koara.html.Html5Renderer;
 
 @RunWith(Parameterized.class)
 public class ComplianceTest {

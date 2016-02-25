@@ -19,7 +19,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import io.koara.ast.Document;
-import io.koara.html5.Html5Renderer;
+import io.koara.html.Html5Renderer;
 
 public class EndToEndTest {
 
