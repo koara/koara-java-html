@@ -6,7 +6,7 @@
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://github.com/koara/koara-java-html/blob/master/LICENSE)
 
 # koara-java-html
-[Koara](http://www.koara.io) is a modular lightweight markup language. This project is for parsing Koara to Html.
+[Koara](http://www.koara.io) is a modular lightweight markup language. This project is for parsing Koara to Html without external dependencies.
 
 ## Getting Started
 - Download [JAR file](http://repo1.maven.org/maven2/io/koara/koara-html/0.9.1/koara-html-0.9.1.jar)
@@ -48,7 +48,7 @@ public class Demo {
 		// Parse string or file and generate AST
 		Document document = parser.parse("Hello World!"); 
 		
-		// Render AST as Html
+		// Render as Html
 		Html5Renderer renderer = new Html5Renderer();
 		document.accept(renderer);
 		
