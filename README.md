@@ -41,11 +41,8 @@ public class Demo {
 	public static void main(String[] args) {
 		
 		Parser parser = new Parser();
-		
-		// Enable which modules to parse (all are parsed by default)
-		parser.setModules(PARAGRAPHS, HEADINGS, LISTS, LINKS, IMAGES, FORMATTING, BLOCKQUOTES, CODE);
-		
-		// Parse string or file and generate AST
+
+		// Parse string and generate AST
 		Document document = parser.parse("Hello World!"); 
 		
 		// Render as Html
@@ -56,4 +53,36 @@ public class Demo {
 	}
 	
 }
+```
+
+When converting koara documents, there are 2 phases: parsing (Koara -> AST) and rendering (AST -> _Output format_)
+
+### Parsing
+#### parse(String text)
+Parse a string.
+
+```java
+parser.parse("Hello World!"); 
+```
+
+#### parseFile(File file)
+Parse a koara file.
+
+```java
+parser.parse("Hello World!"); 
+```
+
+#### setModules(String... modules)
+Enable which modules to parse. By default, all are parsed. 
+
+```java
+parser.setModules("paragraphs", "headings", "lists", "links", "images", "formatting", "blockquotes", "code");
+```
+
+### Rendering
+#### getOutput()
+Get the HTML output
+
+```java
+renderer.getOutput()
 ```
