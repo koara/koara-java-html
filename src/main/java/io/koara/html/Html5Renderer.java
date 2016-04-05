@@ -39,7 +39,8 @@ public class Html5Renderer implements Renderer {
 	private StringBuffer out;
 	private int level;
 	private Stack<Integer> listSequence = new Stack<Integer>();
-
+	private boolean partial = true;
+	
 	public void visit(Document node) {
 		out = new StringBuffer();
 		node.childrenAccept(this);
@@ -194,7 +195,20 @@ public class Html5Renderer implements Renderer {
 	}
 	
 	public String getOutput() {
+		if(!partial) {
+			StringBuffer wrapper = new StringBuffer("<!DOCTYPE html>\n");
+			wrapper.append("<html>\n");
+			wrapper.append("  <body>\n");
+			wrapper.append(out.toString().trim().replaceAll("^", "    "));
+			wrapper.append("  </body>\n");
+			wrapper.append("</html>\n");
+			return wrapper.toString();
+		}
         return out.toString().trim();
     }
+	
+	public void setPartial(boolean partial) {
+		this.partial = partial;
+	}
 
 }

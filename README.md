@@ -57,32 +57,8 @@ public class Demo {
 
 When converting koara documents, there are 2 phases: parsing (Koara -> AST) and rendering (AST -> _Output format_)
 
-### Parsing
-#### parse(String text)
-Parse a string.
-
-```java
-parser.parse("Hello World!"); 
-```
-
-#### parseFile(File file)
-Parse a koara file.
-
-```java
-parser.parse("Hello World!"); 
-```
-
-#### setModules(String... modules)
-Enable which modules to parse. By default, all are parsed. 
-
-```java
-parser.setModules("paragraphs", "headings", "lists", "links", "images", "formatting", "blockquotes", "code");
-```
-
-### Rendering
-#### getOutput()
-Get the HTML output
-
-```java
-renderer.getOutput()
-```
+## Configuration
+### Parser
+### Renderer
+- `setPartial(boolean)`: 
+  When false, the output will wrap the content to make a complete HTML document. (default: true) 
