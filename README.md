@@ -60,5 +60,5 @@ When converting koara documents, there are 2 phases: parsing (Koara -> AST) and 
 ## Configuration
 ### Parser
 ### Renderer
-- `setPartial(boolean)`: 
+- `setPartial`: 
   When false, the output will wrap the content to make a complete HTML document. (default: true) 
