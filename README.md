@@ -31,10 +31,11 @@ The AST is created by the [core koara parser](https://github.com/koara/koara-jav
 
 ## Usage
 ```java
-package io.koara.html;
+package demo;
 
 import io.koara.Parser;
 import io.koara.ast.Document;
+import io.koara.html.Html5Renderer;
 
 public class App {
 
