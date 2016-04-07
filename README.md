@@ -2,14 +2,15 @@
 
 [![Build Status](https://img.shields.io/travis/koara/koara-java-html.svg)](https://travis-ci.org/koara/koara-java-html)
 [![Coverage Status](https://img.shields.io/coveralls/koara/koara-java-html.svg)](https://coveralls.io/github/koara/koara-java-html?branch=master)
-[![Latest Version](https://img.shields.io/maven-central/v/io.koara/koara.svg?label=Maven Central)](http://search.maven.org/#search%7Cga%7C1%7Ckoara-html)
+[![Latest Version](https://img.shields.io/maven-central/v/io.koara/koara-html.svg?label=Maven Central)](http://search.maven.org/#search%7Cga%7C1%7Ckoara-html)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://github.com/koara/koara-java-html/blob/master/LICENSE)
 
-# koara-java-html
-[Koara](http://www.koara.io) is a modular lightweight markup language. This project is for parsing Koara to Html without external dependencies.
+# Koara-java-html
+[Koara](http://www.koara.io) is a modular lightweight markup language. This project can render the koara AST to Html in Java.  
+The AST is created by the [core koara parser](https://github.com/koara/koara-java-html).
 
-## Getting Started
-- Download [JAR file](http://repo1.maven.org/maven2/io/koara/koara-html/0.10/koara-html-0.10.jar)
+## Getting started
+- Download [JAR file](http://repo1.maven.org/maven2/io/koara/koara/0.10/koara-html-0.10.jar)
 - Gradle
 
   ```groovy
@@ -30,35 +31,28 @@
 
 ## Usage
 ```java
-package io.koara;
+package io.koara.html;
 
+import io.koara.Parser;
 import io.koara.ast.Document;
-import io.koara.html.Html5Renderer;
-import static io.koara.Module.*;
 
-public class Demo {
+public class App {
 
 	public static void main(String[] args) {
-		
 		Parser parser = new Parser();
-
-		// Parse string and generate AST
-		Document document = parser.parse("Hello World!"); 
-		
-		// Render as Html
+		Document document = parser.parse("Hello World!");
 		Html5Renderer renderer = new Html5Renderer();
 		document.accept(renderer);
-		
 		System.out.println(renderer.getOutput());
 	}
 	
 }
 ```
 
-When converting koara documents, there are 2 phases: parsing (Koara -> AST) and rendering (AST -> _Output format_)
-
 ## Configuration
-### Parser
-### Renderer
-- `setPartial`: 
-  When false, the output will wrap the content to make a complete HTML document. (default: true) 
+You can configure the Renderer:
+
+-  **renderer.setPartial(boolean partial)**  
+   Default:	`true`
+   
+   When false, the output will be wrapped with a `<html>` and `<body>` tag to make a complete Html document.
