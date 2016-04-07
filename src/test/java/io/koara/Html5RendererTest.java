@@ -36,13 +36,13 @@ public class Html5RendererTest {
 	}
 	
 	@Test
-	public void basic() {
+	public void testBasic() {
 		document.accept(renderer);
 		assertEquals("<p>Test</p>", renderer.getOutput());
 	}
 	
 	@Test
-	public void noPartialResult() {
+	public void testNoPartialResult() {
 		StringBuilder expected = new StringBuilder("<!DOCTYPE html>\n");
 		expected.append("<html>\n");
 		expected.append("  <body>\n");
