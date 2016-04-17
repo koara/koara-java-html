@@ -47,30 +47,35 @@ public class Html5Renderer implements Renderer {
 	}
 	
 	public void visit(Heading node) {
-		out.append(indent() + "<h" + node.getValue() + ">");
+		indent();
+		out.append("<h" + node.getValue() + ">");
 		node.childrenAccept(this);
 		out.append("</h" + node.getValue() + ">\n");
 		if(!node.isNested()) { out.append("\n"); }
 	}
 	
 	public void visit(BlockQuote node) {
-		out.append(indent() + "<blockquote>");
+		indent();
+		out.append("<blockquote>");
 		if(node.getChildren() != null && node.getChildren().length > 0) { out.append("\n"); }
 		level++;
 		node.childrenAccept(this);
 		level--;
-		out.append(indent() + "</blockquote>\n");
+		indent();
+		out.append("</blockquote>\n");
 		if(!node.isNested()) { out.append("\n"); }
 	}
 	
 	public void visit(ListBlock node) {
 		listSequence.push(0);
 		String tag = node.isOrdered() ? "ol" : "ul";
-		out.append(indent() + "<" + tag + ">\n");
+		indent();
+		out.append("<" + tag + ">\n");
 		level++;
 		node.childrenAccept(this);
 		level--;
-		out.append(indent() + "</" + tag + ">\n");
+		indent();
+		out.append("</" + tag + ">\n");
 		if(!node.isNested()) { out.append("\n"); }
 		listSequence.pop();
 	}
@@ -78,7 +83,8 @@ public class Html5Renderer implements Renderer {
 	public void visit(ListItem node) {
 		Integer seq = listSequence.peek() + 1;		
 		listSequence.set(listSequence.size() - 1, seq);
-		out.append(indent() + "<li");
+		indent();
+		out.append("<li");
 		if(node.getNumber() != null && (!seq.equals(node.getNumber()))) {
 			out.append(" value=\"" + node.getNumber() + "\"");
 			listSequence.push(node.getNumber());
@@ -91,13 +97,14 @@ public class Html5Renderer implements Renderer {
 			level++;
 			node.childrenAccept(this);
 			level--;
-			if(node.getChildren().length > 1 || !block) { out.append(indent()); }
+			if(node.getChildren().length > 1 || !block) { indent(); }
 		}
 		out.append("</li>\n");
 	}
 	
 	public void visit(CodeBlock node) {
-		out.append(indent() + "<pre><code");
+		indent();
+		out.append("<pre><code");
 		if(node.getLanguage() != null) {
 			out.append(" class=\"language-" + escape(node.getLanguage()) + "\"");
 		}
@@ -110,7 +117,8 @@ public class Html5Renderer implements Renderer {
 		if(node.isNested() && (node.getParent() instanceof ListItem) && node.isSingleChild()) {
 			node.childrenAccept(this);
 		} else {
-			out.append(indent() + "<p>");
+			indent();
+			out.append("<p>");
 			node.childrenAccept(this);
 			out.append("</p>\n");
 			if(!node.isNested()) { out.append("\n"); }
@@ -122,7 +130,7 @@ public class Html5Renderer implements Renderer {
 		if(node.isNested() && (node.getParent() instanceof ListItem) && node.isSingleChild()) {
 			node.childrenAccept(this);
 		} else {
-			out.append(indent());
+			indent();
 			node.childrenAccept(this);
 			if(!node.isNested()) { out.append("\n"); }
 		}
@@ -170,7 +178,8 @@ public class Html5Renderer implements Renderer {
 	}
 	
 	public void visit(LineBreak node) {
-		out.append("<br>\n" + indent());
+		out.append("<br>\n");
+		indent();
 		node.childrenAccept(this);
 	}
 	
@@ -185,13 +194,11 @@ public class Html5Renderer implements Renderer {
 				.replaceAll("\\\\", "%5C");
 	}
 	
-	public String indent() {
+	public void indent() {
 		int repeat = level * 2;
-	    final char[] buf = new char[repeat];
 		for (int i = repeat - 1; i >= 0; i--) {
-		 buf[i] = ' ';
+		  out.append(" ");
 		} 
-		return new String(buf);
 	}
 	
 	public String getOutput() {
