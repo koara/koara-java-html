@@ -39,6 +39,8 @@ public class Html5Renderer implements Renderer {
 	private StringBuffer out;
 	private int level;
 	private Stack<Integer> listSequence = new Stack<Integer>();
+	private boolean hardWrap;
+
 	private boolean partial = true;
 	
 	public void visit(Document node) {
@@ -178,8 +180,11 @@ public class Html5Renderer implements Renderer {
 	}
 	
 	public void visit(LineBreak node) {
-		out.append("<br>\n");
-		indent();
+		if(hardWrap || node.isExplicit()) {
+			out.append("<br>\n" + indent());
+		} else {
+			out.append(" ");
+		}
 		node.childrenAccept(this);
 	}
 	
@@ -216,6 +221,10 @@ public class Html5Renderer implements Renderer {
 	
 	public void setPartial(boolean partial) {
 		this.partial = partial;
+	}
+	
+	public void setHardWrap(boolean hardWrap) {
+		this.hardWrap = hardWrap;
 	}
 
 }
