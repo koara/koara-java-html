@@ -181,10 +181,10 @@ public class Html5Renderer implements Renderer {
 	
 	public void visit(LineBreak node) {
 		if(hardWrap || node.isExplicit()) {
-			out.append("<br>\n" + indent());
-		} else {
-			out.append(" ");
+			out.append("<br>");
 		}
+		out.append("\n");
+		indent();
 		node.childrenAccept(this);
 	}
 	
