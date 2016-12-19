@@ -15,34 +15,23 @@
  */
 package io.koara.html;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Stack;
 
 import io.koara.Renderer;
-import io.koara.ast.BlockElement;
-import io.koara.ast.BlockQuote;
-import io.koara.ast.Code;
-import io.koara.ast.CodeBlock;
-import io.koara.ast.Document;
-import io.koara.ast.Em;
-import io.koara.ast.Heading;
-import io.koara.ast.Image;
-import io.koara.ast.LineBreak;
-import io.koara.ast.Link;
-import io.koara.ast.ListBlock;
-import io.koara.ast.ListItem;
-import io.koara.ast.Paragraph;
-import io.koara.ast.Strong;
-import io.koara.ast.Text;
+import io.koara.ast.*;
 
 public class Html5Renderer implements Renderer {
 
 	private StringBuffer out;
-	private int level;
-	private Stack<Integer> listSequence = new Stack<Integer>();
-	private boolean hardWrap;
+    private int level;
+    private Stack<Integer> listSequence = new Stack<Integer>();
 
-	private boolean partial = true;
-	
+    private boolean renderPartial = true;
+    private boolean renderHardwrap = false;
+    private boolean renderHeadingIds = false;
+
 	public void visit(Document node) {
 		out = new StringBuffer();
 		node.childrenAccept(this);
@@ -50,7 +39,17 @@ public class Html5Renderer implements Renderer {
 	
 	public void visit(Heading node) {
 		indent();
-		out.append("<h" + node.getValue() + ">");
+		out.append("<h" + node.getValue());
+        if(renderHeadingIds) {
+            String id = "";
+            for(Node n : node.getChildren()) {
+                if(n instanceof Text) {
+                    id += n.getValue().toString();
+                }
+            }
+            out.append(" id=\"" + id.toLowerCase().replace(" ", "_")  + "\"");
+        }
+        out.append(">");
 		node.childrenAccept(this);
 		out.append("</h" + node.getValue() + ">\n");
 		if(!node.isNested()) { out.append("\n"); }
@@ -180,7 +179,7 @@ public class Html5Renderer implements Renderer {
 	}
 	
 	public void visit(LineBreak node) {
-		if(hardWrap || node.isExplicit()) {
+		if(renderHardwrap || node.isExplicit()) {
 			out.append("<br>");
 		}
 		out.append("\n");
@@ -205,26 +204,29 @@ public class Html5Renderer implements Renderer {
 		  out.append(" ");
 		} 
 	}
-	
+
 	public String getOutput() {
-		if(!partial) {
+		if(!renderPartial) {
 			StringBuffer wrapper = new StringBuffer("<!DOCTYPE html>\n");
 			wrapper.append("<html>\n");
 			wrapper.append("  <body>\n");
-			wrapper.append(out.toString().trim().replaceAll("^", "    "));
+			wrapper.append(out.toString().trim().replaceAll("(?m)^", "    ") + "\n");
 			wrapper.append("  </body>\n");
 			wrapper.append("</html>\n");
 			return wrapper.toString();
 		}
         return out.toString().trim();
     }
-	
-	public void setPartial(boolean partial) {
-		this.partial = partial;
-	}
-	
-	public void setHardWrap(boolean hardWrap) {
-		this.hardWrap = hardWrap;
-	}
 
+    public void setRenderHardwrap(boolean renderHardwrap) {
+        this.renderHardwrap = renderHardwrap;
+    }
+
+    public void setRenderPartial(boolean renderPartial) {
+        this.renderPartial = renderPartial;
+    }
+
+    public void setRenderHeadingIds(boolean renderHeadingIds) {
+        this.renderHeadingIds = renderHeadingIds;
+    }
 }
