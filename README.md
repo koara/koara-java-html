@@ -52,7 +52,12 @@ public class App {
 
 ## Configuration
 You can configure the Renderer:
--  **parser.setHardWrap(boolean hardWrap)**  
+-  **parser.setHeadingIds(boolean headingIds)**  
+   Default: `false`
+   
+   Specifiy if an id should be set to heading-elements. 
+
+-  **parser.setHardwrap(boolean hardWrap)**  
    Default: `false`
    
    Specify if newlines should be hard-wrapped (return-based linebreaks) by default.

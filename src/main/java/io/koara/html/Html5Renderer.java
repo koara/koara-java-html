@@ -28,9 +28,10 @@ public class Html5Renderer implements Renderer {
     private int level;
     private Stack<Integer> listSequence = new Stack<Integer>();
 
-    private boolean renderPartial = true;
-    private boolean renderHardwrap = false;
-    private boolean renderHeadingIds = false;
+    // Render options
+    private boolean partial = true;
+    private boolean hardwrap = false;
+    private boolean headingIds = false;
 
 	public void visit(Document node) {
 		out = new StringBuffer();
@@ -40,7 +41,7 @@ public class Html5Renderer implements Renderer {
 	public void visit(Heading node) {
 		indent();
 		out.append("<h" + node.getValue());
-        if(renderHeadingIds) {
+        if(headingIds) {
             String id = "";
             for(Node n : node.getChildren()) {
                 if(n instanceof Text) {
@@ -179,7 +180,7 @@ public class Html5Renderer implements Renderer {
 	}
 	
 	public void visit(LineBreak node) {
-		if(renderHardwrap || node.isExplicit()) {
+		if(hardwrap || node.isExplicit()) {
 			out.append("<br>");
 		}
 		out.append("\n");
@@ -206,7 +207,7 @@ public class Html5Renderer implements Renderer {
 	}
 
 	public String getOutput() {
-		if(!renderPartial) {
+		if(!partial) {
 			StringBuffer wrapper = new StringBuffer("<!DOCTYPE html>\n");
 			wrapper.append("<html>\n");
 			wrapper.append("  <body>\n");
@@ -218,15 +219,16 @@ public class Html5Renderer implements Renderer {
         return out.toString().trim();
     }
 
-    public void setRenderHardwrap(boolean renderHardwrap) {
-        this.renderHardwrap = renderHardwrap;
+    public void setPartial(boolean partial) {
+        this.partial = partial;
     }
 
-    public void setRenderPartial(boolean renderPartial) {
-        this.renderPartial = renderPartial;
+    public void setHardwrap(boolean hardwrap) {
+        this.hardwrap = hardwrap;
     }
 
-    public void setRenderHeadingIds(boolean renderHeadingIds) {
-        this.renderHeadingIds = renderHeadingIds;
+    public void setHeadingIds(boolean headingIds) {
+        this.headingIds = headingIds;
     }
+
 }

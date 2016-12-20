@@ -29,7 +29,7 @@ public class Html5RendererTest {
 
     @Test
     public void testRenderHardwrapTrue() {
-        renderer.setRenderHardwrap(true);
+        renderer.setHardwrap(true);
         document = new Parser().parse("a\nb");
         document.accept(renderer);
         assertEquals("<p>a<br>\nb</p>", renderer.getOutput());
@@ -44,7 +44,7 @@ public class Html5RendererTest {
 		expected.append("  </body>\n");
 		expected.append("</html>\n");
 
-        renderer.setRenderPartial(false);
+        renderer.setPartial(false);
         document = new Parser().parse("Test");
         document.accept(renderer);
 		assertEquals(expected.toString(), renderer.getOutput());
@@ -53,7 +53,7 @@ public class Html5RendererTest {
 
     @Test
     public void testHeadingIdsTrue() {
-        renderer.setRenderHeadingIds(true);
+        renderer.setHeadingIds(true);
         document = new Parser().parse("= A");
         document.accept(renderer);
         assertEquals("<h1 id=\"a\">A</h1>", renderer.getOutput());
@@ -61,7 +61,7 @@ public class Html5RendererTest {
 
     @Test
     public void testHeadingIdsTrueMultipleWords() {
-        renderer.setRenderHeadingIds(true);
+        renderer.setHeadingIds(true);
         document = new Parser().parse("= This is a test");
         document.accept(renderer);
         assertEquals("<h1 id=\"this_is_a_test\">This is a test</h1>", renderer.getOutput());
