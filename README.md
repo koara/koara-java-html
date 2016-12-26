@@ -10,12 +10,12 @@
 The AST is created by the [core koara parser](https://github.com/koara/koara-java).
 
 ## Getting started
-- Download [JAR file](http://repo1.maven.org/maven2/io/koara/koara/0.13.0/koara-html-0.13.0.jar)
+- Download [JAR file](http://repo1.maven.org/maven2/io/koara/koara/0.14.0/koara-html-0.14.0.jar)
 - Gradle
 
   ```groovy
   dependencies {
-	compile "io.koara:koara-html:0.13.0"
+	compile "io.koara:koara-html:0.14.0"
   }
   ```
   
@@ -25,7 +25,7 @@ The AST is created by the [core koara parser](https://github.com/koara/koara-jav
   <dependency>
     <groupId>io.koara</groupId>
     <artifactId>koara-html</artifactId>
-    <version>0.13.0</version>
+    <version>0.14.0</version>
   </dependency>
   ```
 
