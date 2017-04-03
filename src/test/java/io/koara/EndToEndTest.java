@@ -16,7 +16,8 @@ import io.koara.html.Html5Renderer;
 public class EndToEndTest {
 
     private Parser parser;
-
+    private File input = new File("testsuite/input/end2end.kd");
+    
     @Before
     public void setUp() {
         parser = new Parser();
@@ -1298,11 +1299,10 @@ public class EndToEndTest {
     }
 
     private void assertOutput(String file, String... modules) throws Exception {
-        File kd = new File("testsuite/input/end2end.kd");
         String html = readFile("testsuite/output/html5/end2end/" + file + ".htm");
 
         parser.setModules(modules);
-        Document document = parser.parseFile(kd);
+        Document document = parser.parseFile(input);
         Html5Renderer renderer = new Html5Renderer();
         document.accept(renderer);
 
