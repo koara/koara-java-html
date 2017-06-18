@@ -13,9 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.koara;
+package com.codeaddslife.koara;
 
-import static org.junit.Assert.assertEquals;
+import com.codeaddslife.koara.html.Html5Renderer;
+import io.koara.Parser;
+import io.koara.ast.Document;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+import org.junit.runners.Parameterized.Parameters;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -24,13 +30,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-import org.junit.runners.Parameterized.Parameters;
-
-import io.koara.ast.Document;
-import io.koara.html.Html5Renderer;
+import static org.junit.Assert.assertEquals;
 
 @RunWith(Parameterized.class)
 public class ComplianceTest {

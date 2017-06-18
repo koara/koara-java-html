@@ -35,7 +35,7 @@ package demo;
 
 import io.koara.Parser;
 import io.koara.ast.Document;
-import io.koara.html.Html5Renderer;
+import Html5Renderer;
 
 public class App {
 

@@ -1,4 +1,4 @@
-package io.koara;
+package com.codeaddslife.koara;
 
 import static org.junit.Assert.assertEquals;
 
@@ -7,11 +7,12 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
+import io.koara.Parser;
 import org.junit.Before;
 import org.junit.Test;
 
 import io.koara.ast.Document;
-import io.koara.html.Html5Renderer;
+import com.codeaddslife.koara.html.Html5Renderer;
 
 public class EndToEndTest {
 
