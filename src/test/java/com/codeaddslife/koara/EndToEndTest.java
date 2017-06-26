@@ -7,11 +7,10 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
-import io.koara.Parser;
+import com.codeaddslife.koara.ast.Document;
 import org.junit.Before;
 import org.junit.Test;
 
-import io.koara.ast.Document;
 import com.codeaddslife.koara.html.Html5Renderer;
 
 public class EndToEndTest {

@@ -15,9 +15,8 @@
  */
 package com.codeaddslife.koara;
 
+import com.codeaddslife.koara.ast.Document;
 import com.codeaddslife.koara.html.Html5Renderer;
-import io.koara.Parser;
-import io.koara.ast.Document;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;

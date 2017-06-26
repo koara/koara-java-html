@@ -9,9 +9,9 @@ apply plugin: 'signing'
 apply plugin: 'net.saliman.cobertura'
 apply plugin: 'com.github.kt3k.coveralls'
 
-group = 'io.koara'
+group = 'com.codeaddslife.koara'
 jar.baseName = 'koara-html'
-version = '0.14.0'
+version = '0.15.0'
 
 repositories {
 	mavenLocal()
@@ -47,7 +47,7 @@ artifacts {
 }
 
 dependencies {
-	compile "io.koara:koara:${version}"
+	compile "com.codeaddslife.koara:koara:${version}"
 	testCompile 'junit:junit:4.11'
 	testCompile 'org.slf4j:slf4j-nop:1.7.12'
 }
