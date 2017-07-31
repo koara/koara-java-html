@@ -2,11 +2,9 @@ package com.codeaddslife.koara;
 
 import static org.junit.Assert.assertEquals;
 
-
 import com.codeaddslife.koara.ast.Document;
 import org.junit.Before;
 import org.junit.Test;
-
 
 import com.codeaddslife.koara.html.Html5Renderer;
 
