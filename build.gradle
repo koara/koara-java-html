@@ -1,6 +1,12 @@
-plugins {
-    id 'net.saliman.cobertura' version '2.3.1'
-    id 'com.github.kt3k.coveralls' version '2.6.3'
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'net.saliman:gradle-cobertura-plugin:2.0.0'
+        classpath 'org.kt3k.gradle.plugin:coveralls-gradle-plugin:2.0.0'
+    }
 }
 
 apply plugin: 'java'
@@ -14,8 +20,7 @@ jar.baseName = 'koara-html'
 version = '0.15.0'
 
 repositories {
-	mavenLocal()
-	mavenCentral()
+    mavenCentral()
 }
 
 cobertura.coverageFormats = ['xml']
