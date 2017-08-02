@@ -1,6 +1,8 @@
 buildscript {
     repositories {
-        url "http://repo1.maven.org/maven2"
+        maven {
+            url "http://repo1.maven.org/maven2"
+        }
     }
 
     dependencies {
@@ -20,7 +22,9 @@ jar.baseName = 'koara'
 version = '0.15.0'
 
 repositories {
-    url "http://repo1.maven.org/maven2"
+    maven {
+        url "http://repo1.maven.org/maven2"
+    }
 }
 
 cobertura.coverageFormats = ['xml']
