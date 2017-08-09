@@ -1,9 +1,13 @@
 language: java
 
-jdk:
-  - openjdk7
-  - oraclejdk7
-  - oraclejdk8
-
-script:
-  - gradle cobertura coveralls --info
+matrix:
+  include:
+    - jdk: openjdk7
+      after_success:
+        - gradle build --info
+    - jdk: oraclejdk7
+      after_success:
+        - gradle build --info
+    - jdk: oraclejdk8
+      after_success:
+        - gradle cobertura coveralls --info
